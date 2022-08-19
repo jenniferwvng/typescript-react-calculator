@@ -7,4 +7,5 @@ Aim is to get a hang of what Typescript is about, progress while building this p
 Chose to make a calculator as the code base won't be too big and while it requires some programming logic for the calculations, it also gives different opportunities to use with Typescript, like event listeners, state hooks etc. 
 
 ### Live demo (project not done yet)
-typescript-calculator-js.netlify.app
+https://typescript-calculator-js.netlify.app
+ 
