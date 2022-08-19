@@ -3,12 +3,18 @@ import React, { useState } from 'react';
 
 function App() {
   const [clickedOperand, setClickOperand] = useState(false);  
+
   const [calculateStorage, setCalculateStorage] = useState({
     calculatedSum: 0,
     operand: '',
     numBeforeOperand: 0,
     numAfterOperand: 0
   });
+
+  console.log('numBeforeOperand:' + calculateStorage.numBeforeOperand)
+  console.log('numAfterOperand:' + calculateStorage.numAfterOperand)
+  console.log('calculatedSum:' + calculateStorage.calculatedSum)
+  console.log('operand:' + calculateStorage.operand)
 
   const handleNumClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     let button = e.target as HTMLButtonElement;
@@ -97,13 +103,12 @@ function App() {
         <h1>Typescript Calculator</h1>
       </header>
       <main>
-        <div>
-          <span>
+        <div style={{display: 'flex', justifyContent: 'center', fontWeight: 'bold', fontSize: '30px'}}>          
             <p>{calculateStorage.numBeforeOperand}</p>
             <p>{calculateStorage.operand}</p>
             <p>{calculateStorage.numAfterOperand}</p>
-            <p style={{color: 'red'}}>{calculateStorage.calculatedSum}</p>
-          </span>
+            <p>=</p>
+            <p style={{color: 'red'}}>{calculateStorage.calculatedSum}</p>          
         </div>
 
         <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -116,14 +121,14 @@ function App() {
         </span>
 
         <span style={{display: 'flex', flexDirection: 'column'}}>
-          <button style={{backgroundColor: 'lightgrey', border: 'none', padding: '25px', borderRadius: '50%'}}></button>
+          <button style={{backgroundColor: 'lightgrey', border: 'none', padding: '25px', borderRadius: '50%'}}>.</button>
           <button value={8} onClick={handleNumClick} style={{backgroundColor: 'grey', border: 'none', padding: '25px', borderRadius: '50%'}}>8</button>
           <button value={5} onClick={handleNumClick} style={{backgroundColor: 'grey', border: 'none', padding: '25px', borderRadius: '50%'}}>5</button>
           <button value={2} onClick={handleNumClick} style={{backgroundColor: 'grey', border: 'none', padding: '25px', borderRadius: '50%'}}>2</button>
         </span>
 
         <span style={{display: 'flex', flexDirection: 'column'}}>
-          <button style={{backgroundColor: 'lightgrey', border: 'none', padding: '25px', borderRadius: '50%'}}></button>
+          <button style={{backgroundColor: 'lightgrey', border: 'none', padding: '25px', borderRadius: '50%'}}>.</button>
           <button value={9} onClick={handleNumClick} style={{backgroundColor: 'grey', border: 'none', padding: '25px', borderRadius: '50%'}}>9</button>
           <button value={6} onClick={handleNumClick} style={{backgroundColor: 'grey', border: 'none', padding: '25px', borderRadius: '50%'}}>6</button>
           <button value={3} onClick={handleNumClick} style={{backgroundColor: 'grey', border: 'none', padding: '25px', borderRadius: '50%'}}>3</button>
