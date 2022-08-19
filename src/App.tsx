@@ -59,7 +59,6 @@ function App() {
   }
 
   const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
-
     setCalculateStorage(prevState => ({
       ...prevState, 
       calculatedSum: 0,
@@ -78,11 +77,20 @@ function App() {
         calculatedSum: prevState.numBeforeOperand + prevState.numAfterOperand
       }));        
     } else if (calculateStorage.operand === '-') {
-
+      setCalculateStorage(prevState => ({
+        ...prevState, 
+        calculatedSum: prevState.numBeforeOperand - prevState.numAfterOperand
+      }));  
     } else if (calculateStorage.operand === '*') {
-
+      setCalculateStorage(prevState => ({
+        ...prevState, 
+        calculatedSum: prevState.numBeforeOperand * prevState.numAfterOperand
+      }));  
     } else {
-      //divide
+      setCalculateStorage(prevState => ({
+        ...prevState, 
+        calculatedSum: prevState.numBeforeOperand / prevState.numAfterOperand
+      }));  
     }
   }
 
