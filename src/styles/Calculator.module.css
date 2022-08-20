@@ -1,0 +1,37 @@
+.inputDisplay {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.calculatorButtonsDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.calculatorButtonsDiv > span {
+    display: flex;
+    flex-direction: column;
+}
+
+.calculatorButtonsDiv > span > button {
+    background-color: grey;
+    border: none;
+    padding: 25px;
+    border-radius: 50%;
+}
+
+.calculatorButtonsDiv > span:first-child > button:first-child {
+    background-color: lightgrey;
+    border: none;
+    padding: 25px;
+    border-radius: 50%;
+}
+
+.calculatorButtonsDiv > span:last-child > button {
+    background-color: orange;
+    border: none;
+    padding: 25px;
+    border-radius: 50%;
+}
