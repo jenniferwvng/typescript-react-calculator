@@ -20,6 +20,10 @@
     border: none;
     padding: 25px;
     border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 3px;
 }
 
 .calculatorButtonsDiv > span:first-child > button:first-child {

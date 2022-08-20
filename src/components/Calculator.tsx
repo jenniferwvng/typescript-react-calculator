@@ -1,20 +1,34 @@
 import React, { useState } from 'react';
 import styles from '../styles/Calculator.module.css'
 
+interface IcalculatorStorage {
+    calculatedSum: number,
+    operand: string
+    numBeforeOperand: number,
+    numAfterOperand: number
+}
+
 const Calculator = (): JSX.Element => {
     const [clickedOperand, setClickOperand] = useState(false);  
 
-    const [calculateStorage, setCalculateStorage] = useState({
+    const [calculateStorage, setCalculateStorage] = useState<IcalculatorStorage>({
       calculatedSum: 0,
       operand: '',
       numBeforeOperand: 0,
       numAfterOperand: 0
     });
   
-    console.log('numBeforeOperand:' + calculateStorage.numBeforeOperand)
-    console.log('numAfterOperand:' + calculateStorage.numAfterOperand)
-    console.log('calculatedSum:' + calculateStorage.calculatedSum)
-    console.log('operand:' + calculateStorage.operand)
+    const {
+        calculatedSum, 
+        operand, 
+        numBeforeOperand, 
+        numAfterOperand
+    } = calculateStorage;
+
+    console.log('numBeforeOperand:' + numBeforeOperand)
+    console.log('numAfterOperand:' + numAfterOperand)
+    console.log('calculatedSum:' + calculatedSum)
+    console.log('operand:' + operand)
   
     
     const handleNumClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -27,7 +41,7 @@ const Calculator = (): JSX.Element => {
         }))      
       } 
       
-      if (clickedOperand && calculateStorage.calculatedSum !== 0) {
+      if (clickedOperand && calculatedSum !== 0) {
         //If sum becomes 0 while calculating this wont work anymore: could change initial state to null and use it as comparator? flag?
         setCalculateStorage(prevState => ({
           ...prevState, 
@@ -98,12 +112,12 @@ const Calculator = (): JSX.Element => {
           <h1>Typescript Calculator</h1>
         </header>
         <main>
-          <div className={styles.inputDisplay}>          
-              <p>{calculateStorage.numBeforeOperand}</p>
-              <p>{calculateStorage.operand}</p>
-              <p>{calculateStorage.numAfterOperand}</p>
+          <div className={styles.inputDisplay}>   
+              <p>{numBeforeOperand}</p>
+              <p>{operand}</p>
+              <p>{numAfterOperand}</p>
               <p>=</p>
-              <p style={{color: 'red'}}>{calculateStorage.calculatedSum}</p>          
+              <p style={{color: 'red'}}>{calculatedSum}</p>          
           </div>
   
           <div className={styles.calculatorButtonsDiv}>
