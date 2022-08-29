@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Calculator.module.css'
 
-interface IcalculatorStorage {
+interface CalculatorStorage {
     calculatedSum: number,
     operand: string
     numBeforeOperand: number,
@@ -11,7 +11,7 @@ interface IcalculatorStorage {
 const Calculator = (): JSX.Element => {
     const [clickedOperand, setClickOperand] = useState(false);  
 
-    const [calculateStorage, setCalculateStorage] = useState<IcalculatorStorage>({
+    const [calculateStorage, setCalculateStorage] = useState<CalculatorStorage>({
       calculatedSum: 0,
       operand: '',
       numBeforeOperand: 0,

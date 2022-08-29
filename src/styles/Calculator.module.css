@@ -16,7 +16,7 @@
 }
 
 .calculatorButtonsDiv > span > button {
-    background-color: grey;
+    background-color: rgb(51, 51, 51, 0.8);
     border: none;
     padding: 25px;
     border-radius: 50%;
@@ -27,7 +27,7 @@
 }
 
 .calculatorButtonsDiv > span:first-child > button:first-child {
-    background-color: lightgrey;
+    background-color: rgb(191, 191, 191);
     border: none;
     padding: 25px;
     border-radius: 50%;
