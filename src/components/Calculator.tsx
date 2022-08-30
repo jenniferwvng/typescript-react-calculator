@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '../styles/Calculator.module.css'
 
 interface CalculatorStorage {
-    calculatedSum: number,
+    calculatedSum: any,
     operand: string
     numBeforeOperand: number,
     numAfterOperand: number
@@ -12,7 +12,7 @@ const Calculator = (): JSX.Element => {
     const [clickedOperand, setClickOperand] = useState(false);  
 
     const [calculateStorage, setCalculateStorage] = useState<CalculatorStorage>({
-      calculatedSum: 0,
+      calculatedSum: '',
       operand: '',
       numBeforeOperand: 0,
       numAfterOperand: 0
@@ -41,8 +41,7 @@ const Calculator = (): JSX.Element => {
         }))      
       } 
       
-      if (clickedOperand && calculatedSum !== 0) {
-        //If sum becomes 0 while calculating this wont work anymore: could change initial state to null and use it as comparator? flag?
+      if (clickedOperand && calculatedSum !== '') {
         setCalculateStorage(prevState => ({
           ...prevState, 
           numBeforeOperand: prevState.calculatedSum,
@@ -83,17 +82,17 @@ const Calculator = (): JSX.Element => {
     }
       
     const handleCalculation = () => {
-    if (calculateStorage.operand === '+') {
+    if (operand === '+') {
       setCalculateStorage(prevState => ({
         ...prevState, 
         calculatedSum: prevState.numBeforeOperand + prevState.numAfterOperand
       }));        
-    } else if (calculateStorage.operand === '-') {
+    } else if (operand === '-') {
       setCalculateStorage(prevState => ({
         ...prevState, 
         calculatedSum: Number(prevState.numBeforeOperand - prevState.numAfterOperand)
       }));  
-    } else if (calculateStorage.operand === '*') {
+    } else if (operand === '*') {
       setCalculateStorage(prevState => ({
         ...prevState, 
         calculatedSum: prevState.numBeforeOperand * prevState.numAfterOperand
