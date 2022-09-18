@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/Calculator.module.css'
 
 interface CalculatorStorage {
@@ -29,32 +29,41 @@ const Calculator = (): JSX.Element => {
     console.log('numAfterOperand:' + numAfterOperand)
     console.log('calculatedSum:' + calculatedSum)
     console.log('operand:' + operand)
-  
-    
-    const handleNumClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-      let button = e.target as HTMLButtonElement;
-  
-      if (clickedOperand) {
-        setCalculateStorage(prevState => ({
-          ...prevState, 
-          numAfterOperand: Number(button.value)
-        }))      
-      } 
+
+    const clickedNumLogic = (appendedNumbers: string) => {
+        if (clickedOperand) {
+            setCalculateStorage(prevState => ({
+              ...prevState, 
+              numAfterOperand: Number(appendedNumbers)
+            }));      
+          } 
+
+          if (clickedOperand && calculatedSum !== '') {
+            setCalculateStorage(prevState => ({
+              ...prevState, 
+              numBeforeOperand: prevState.calculatedSum,
+              calculatedSum: ''
+            }));
+          } 
       
-      if (clickedOperand && calculatedSum !== '') {
-        setCalculateStorage(prevState => ({
-          ...prevState, 
-          numBeforeOperand: prevState.calculatedSum,
-          calculatedSum: 0
-        }))
-      } 
-  
-      if (!clickedOperand) {
-        setCalculateStorage(prevState => ({
-          ...prevState, 
-          numBeforeOperand: Number(button.value)
-        }))
-      }
+          if (!clickedOperand) {
+            setCalculateStorage(prevState => ({
+              ...prevState, 
+              numBeforeOperand: Number(appendedNumbers)
+            }));
+          }
+    }
+    
+    const [appendedNumbers, setAppendedNumbers] = useState('');
+
+    useEffect(() => {
+        clickedNumLogic(appendedNumbers);  
+    }, [appendedNumbers])
+
+    function handleNumClick (this: HTMLElement, e: React.MouseEvent<HTMLButtonElement> | MouseEvent) {
+      let button = e.target as HTMLButtonElement;
+
+      setAppendedNumbers(appendedNumbers + button.value);                
     }
   
     const handleOperandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -66,19 +75,21 @@ const Calculator = (): JSX.Element => {
       }));  
   
       setClickOperand(true);
+      setAppendedNumbers('');
       //reset to false once click AC
     }
   
     const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
       setCalculateStorage(prevState => ({
         ...prevState, 
-        calculatedSum: 0,
+        calculatedSum: '',
         operand: '',
         numBeforeOperand: 0,
         numAfterOperand: 0
       }));  
       
       setClickOperand(false);
+      setAppendedNumbers('');
     }
       
     const handleCalculation = () => {
